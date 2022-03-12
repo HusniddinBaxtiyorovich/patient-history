@@ -6,6 +6,7 @@ import com.example.historydiseases.feature_location.entity.Regions;
 import com.example.historydiseases.feature_location.repository.RegionsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.var;
 import org.springframework.stereotype.Service;
 
 @Slf4j

@@ -1,17 +1,15 @@
 package com.example.historydiseases.core.dto.profile;
 
-import com.example.historydiseases.core.entity.AgeType;
+import com.example.historydiseases.core.entity.profileEntity.util.AgeType;
 import com.example.historydiseases.feature_location.entity.Countries;
 import com.example.historydiseases.feature_location.entity.Districts;
 import com.example.historydiseases.feature_location.entity.Regions;
-import com.example.historydiseases.feature_profile.Gender;
-import com.example.historydiseases.feature_profile.ProfileRole;
-import com.example.historydiseases.feature_profile.ProfileStatus;
+import com.example.historydiseases.core.entity.profileEntity.util.Gender;
+import com.example.historydiseases.core.entity.profileEntity.util.ProfileRole;
+import com.example.historydiseases.core.entity.profileEntity.util.ProfileStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;

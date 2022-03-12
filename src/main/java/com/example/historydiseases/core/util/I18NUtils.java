@@ -52,9 +52,9 @@ public class I18NUtils {
     }
 
     public static Locale getLocaleFromLanguageKey(String langKey) {
-        var locale = Locale.getDefault();
+        Locale locale = Locale.getDefault();
         if (langKey != null) {
-            var lang = Locale.forLanguageTag(langKey);
+            Locale lang = Locale.forLanguageTag(langKey);
             if (lang != null && !lang.getCountry().isEmpty()) {
                 locale = Locale.forLanguageTag(langKey);
             }
@@ -67,7 +67,7 @@ public class I18NUtils {
     }
 
     public static String currentLocaleCountryNameInLowerCase() {
-        var countryCode = currentLocale().getCountry().toLowerCase();
+        String countryCode = currentLocale().getCountry().toLowerCase();
         if (countryCode.isEmpty()) {
             countryCode = Locale.getDefault().getCountry().toLowerCase();
         }

@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 
-import com.example.historydiseases.core.BaseEntity;
+import com.example.historydiseases.core.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

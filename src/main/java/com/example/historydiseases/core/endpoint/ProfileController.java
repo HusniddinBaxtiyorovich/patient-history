@@ -6,7 +6,9 @@ import com.example.historydiseases.core.dto.profile.ProfileFilterDTO;
 import com.example.historydiseases.core.dto.profile.ProfileUpdateDTO;
 import com.example.historydiseases.core.security.SpringSecurityUtil;
 import com.example.historydiseases.core.service.ProfileService;
-import com.example.historydiseases.feature_profile.ProfileStatus;
+import com.example.historydiseases.core.entity.profileEntity.util.ProfileStatus;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +38,8 @@ public class ProfileController {
      ------------------------------------User----------------------------------------
      */
     @GetMapping("/detail")
-//    @ApiOperation(value = "Get Profile All Detail", notes = "get greeting", nickname = "getGreeting",
-//            authorizations = {@Authorization(value = "JWT Token")})
+    @ApiOperation(value = "Get Profile All Detail", notes = "get greeting", nickname = "getGreeting",
+            authorizations = {@Authorization(value = "JWT Token")})
     public ResponseEntity<ProfileDetailDTO> getProfileDetail(HttpServletRequest request) {
         Long userId = SpringSecurityUtil.getUserId();
         ProfileDetailDTO dto = profileService.getDetail(userId);

@@ -2,12 +2,13 @@ package com.example.historydiseases.core.util;
 
 import com.example.historydiseases.config.CustomUserDetails;
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-
+@RequiredArgsConstructor
 @Component
 public class JwtTokenUtil {
     private final String jwtSecret = "zdtlD3JK56m6wTTgsNFhqzjqP";

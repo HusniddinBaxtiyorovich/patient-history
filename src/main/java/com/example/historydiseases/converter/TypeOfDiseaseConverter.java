@@ -1,7 +1,7 @@
 package com.example.historydiseases.converter;
 
-import com.example.historydiseases.feature_criteria.dto.TypeOfDisease.TypeOfDiseaseDetailDto;
-import com.example.historydiseases.feature_criteria.entity.TypeOfDisease;
+import com.example.historydiseases.core.dto.TypeOfDisease.TypeOfDiseaseDetailDto;
+import com.example.historydiseases.core.entity.typeOfDiseaseEntity.TypeOfDisease;
 
 public class TypeOfDiseaseConverter {
 

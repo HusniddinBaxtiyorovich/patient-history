@@ -1,20 +1,21 @@
 package com.example.historydiseases.core.service;
 
 import com.example.historydiseases.converter.ProfileConverter;
-import com.example.historydiseases.core.dto.profile.*;
-import com.example.historydiseases.core.entity.Profile;
-import com.example.historydiseases.core.entity.ProfileImage;
+import com.example.historydiseases.core.dto.profile.ProfileCreateDTO;
+import com.example.historydiseases.core.dto.profile.ProfileDetailDTO;
+import com.example.historydiseases.core.dto.profile.ProfileFilterDTO;
+import com.example.historydiseases.core.dto.profile.ProfileUpdateDTO;
+import com.example.historydiseases.core.entity.profileEntity.ProfileEntity;
 import com.example.historydiseases.core.exp.ItemNotFoundException;
 import com.example.historydiseases.core.exp.ServerBadRequestException;
-import com.example.historydiseases.core.repository.ProfileImageRepository;
-import com.example.historydiseases.core.repository.ProfileRequestRepository;
-import com.example.historydiseases.core.repository.ProfileRepository;
-import com.example.historydiseases.feature_profile.ProfileRole;
-import com.example.historydiseases.feature_profile.ProfileStatus;
+import com.example.historydiseases.core.repository.profilerepository.ProfileImageRepository;
+import com.example.historydiseases.core.repository.profilerepository.ProfileRequestRepository;
+import com.example.historydiseases.core.repository.profilerepository.ProfileRepository;
+import com.example.historydiseases.core.entity.profileEntity.util.ProfileRole;
+import com.example.historydiseases.core.entity.profileEntity.util.ProfileStatus;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -37,7 +38,7 @@ public class ProfileService {
 
     public ProfileDetailDTO getDetail(Long profileId) {
 
-        Profile entity = get(profileId);
+        ProfileEntity entity = get(profileId);
 
         ProfileDetailDTO dto = new ProfileDetailDTO();
         dto.setName(entity.getName());
@@ -56,7 +57,9 @@ public class ProfileService {
     }
 
     public Boolean profileUpdateDetail(Long id, ProfileUpdateDTO dto) { // profile update own detail
-        Profile entity = get(id);
+        ProfileEntity entity = get(id);
+
+
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setContact(dto.getContact());
@@ -72,7 +75,7 @@ public class ProfileService {
     public ProfileCreateDTO create(ProfileCreateDTO dto) {
 
 
-        Optional<Profile> optional = Optional.of(profileRepository.getById(dto.getId()));
+        Optional<ProfileEntity> optional = Optional.of(profileRepository.getById(dto.getId()));
         if (optional.isPresent()) {
             throw new ServerBadRequestException("user already exists.");
         }
@@ -84,7 +87,7 @@ public class ProfileService {
         if (dto.getRole().equals(ProfileRole.ROLE_USER)) {
             throw new ServerBadRequestException("Sizda foydalanuvchi qo'shish huquqi mavjud emas");
         }
-        Profile entity = new Profile();
+        ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
 //        entity.setEmail(dto.getEmail());
@@ -100,7 +103,7 @@ public class ProfileService {
     }
 
     public Boolean update(Long id, ProfileCreateDTO dto) {
-        Profile entity = get(id);
+        ProfileEntity entity = get(id);
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
 //        entity.setEmail(dto.getEmail());
@@ -111,7 +114,7 @@ public class ProfileService {
     }
 
     public ProfileDetailDTO getById(Long id) {
-        Profile profileEntity = get(id);
+        ProfileEntity profileEntity = get(id);
         return ProfileConverter.toDTO(profileEntity);
     }
 
@@ -123,11 +126,11 @@ public class ProfileService {
     public Page<ProfileDetailDTO> getListForPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
 
-        Page<Profile> paging = this.profileRepository.findAll(pageable);
+        Page<ProfileEntity> paging = this.profileRepository.findAll(pageable);
 
         Long totalElements = paging.getTotalElements();
         Integer totalPages = paging.getTotalPages();
-        List<Profile> content = paging.getContent();
+        List<ProfileEntity> content = paging.getContent();
 
         Page<ProfileDetailDTO> resultPage = paging.map(ProfileConverter::toDTO);
         return resultPage;
@@ -141,7 +144,7 @@ public class ProfileService {
         Pageable pageable = PageRequest.of(filterDTO.getPage(), filterDTO.getSize(), filterDTO.getDirection(), sortBy);
 
         List<Predicate> predicateList = new ArrayList<>();
-        Specification<Profile> specification = (root, criteriaQuery, criteriaBuilder) -> {
+        Specification<ProfileEntity> specification = (root, criteriaQuery, criteriaBuilder) -> {
             if (filterDTO.getName() != null) {
                 predicateList.add(criteriaBuilder.equal(root.get("name"), filterDTO.getName()));
             }
@@ -160,7 +163,7 @@ public class ProfileService {
 
 //        Page<Profile> paging =profileRepository.findAll(specification, pageable);
 
-        Page<Profile> paging = profileRepository.findAll(pageable);
+        Page<ProfileEntity> paging = profileRepository.findAll(pageable);
         List<ProfileDetailDTO> detailDTOList = new LinkedList<>();
 
         paging.forEach(profileEntity -> {
@@ -170,8 +173,8 @@ public class ProfileService {
 //        return new PageImpl<>(detailDTOList, pageable, paging.getTotalElements());
     }
 
-    public Profile get(Long id) {
-        Optional<Profile> optional = this.profileRepository.findById(id);
+    public ProfileEntity get(Long id) {
+        Optional<ProfileEntity> optional = this.profileRepository.findById(id);
         if (!optional.isPresent()) {
             throw new ItemNotFoundException("Profile Not Found");
         }

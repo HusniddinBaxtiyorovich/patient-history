@@ -1,5 +1,5 @@
 package com.example.historydiseases.feature_location.entity;
-import com.example.historydiseases.core.BaseEntity;
+import com.example.historydiseases.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

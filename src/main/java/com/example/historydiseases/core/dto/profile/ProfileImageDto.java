@@ -1,6 +1,6 @@
 package com.example.historydiseases.core.dto.profile;
 
-import com.example.historydiseases.core.entity.ProfileRequest;
+import com.example.historydiseases.core.entity.profileEntity.ProfileRequest;
 import lombok.Data;
 
 import java.time.LocalDateTime;

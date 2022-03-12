@@ -1,7 +1,7 @@
 package com.example.historydiseases.config;
 
-import com.example.historydiseases.core.entity.Profile;
-import com.example.historydiseases.feature_profile.ProfileStatus;
+import com.example.historydiseases.core.entity.profileEntity.ProfileEntity;
+import com.example.historydiseases.core.entity.profileEntity.util.ProfileStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +17,7 @@ public class CustomUserDetails implements UserDetails {
 
     private List<GrantedAuthority> authorityList;
 
-    public CustomUserDetails(Profile profile) {
+    public CustomUserDetails(ProfileEntity profile) {
         id = profile.getId();
         userName = profile.getEmail();
         password = profile.getPassword();

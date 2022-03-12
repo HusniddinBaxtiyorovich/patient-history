@@ -7,6 +7,7 @@ import com.example.historydiseases.feature_location.repository.DistrictBranchRep
 import com.example.historydiseases.feature_location.repository.DistrictsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.var;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

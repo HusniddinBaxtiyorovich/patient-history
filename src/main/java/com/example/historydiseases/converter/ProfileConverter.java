@@ -1,12 +1,12 @@
 package com.example.historydiseases.converter;
 
 import com.example.historydiseases.core.dto.profile.ProfileDetailDTO;
-import com.example.historydiseases.core.entity.Profile;
+import com.example.historydiseases.core.entity.profileEntity.ProfileEntity;
 
 public class ProfileConverter {
 
 
-    public static ProfileDetailDTO toDTO(Profile entity) {
+    public static ProfileDetailDTO toDTO(ProfileEntity entity) {
         if (entity == null)
             return null;
 
@@ -24,7 +24,7 @@ public class ProfileConverter {
         return dto;
     }
 
-    public static ProfileDetailDTO toShortDetail(Profile entity) {
+    public static ProfileDetailDTO toShortDetail(ProfileEntity entity) {
         if (entity == null)
             return null;
         ProfileDetailDTO dto = new ProfileDetailDTO();

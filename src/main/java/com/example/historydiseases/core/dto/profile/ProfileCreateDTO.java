@@ -1,7 +1,7 @@
 package com.example.historydiseases.core.dto.profile;
 
-import com.example.historydiseases.core.entity.AgeType;
-import com.example.historydiseases.feature_profile.ProfileRole;
+import com.example.historydiseases.core.entity.profileEntity.util.AgeType;
+import com.example.historydiseases.core.entity.profileEntity.util.ProfileRole;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
